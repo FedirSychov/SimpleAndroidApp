@@ -16,26 +16,24 @@ class SpaceXLaunchesViewModel: ViewModel() {
     }
 
     private fun getLaunches() {
-        Log.d("startTag", "started") // Эта строка выводится, значит, метод вызывается
+        Log.d("startTag", "started")
         viewModelScope.launch {
             try {
-                Log.d("TAG", "Attempting to get launches") // Добавьте лог, чтобы увидеть, что корутина запускается
+                Log.d("TAG", "Attempting to get launches")
                 val response = SpaceXApiClient.apiService.getLaunches()
 
-                Log.d("TAG1", response.message()) // Проверка, что мы получаем ответ от сервера
+                Log.d("TAG1", response.message())
 
-                // Если код дойдет сюда, значит, запрос выполнен, выводим результат
                 Log.d("TAG2", "Response: $response")
 
-                // Проверим успешность запроса
                 if (response.isSuccessful) {
-                    Log.d("TAG3", "Successful response") // Печатаем успех, если ответ успешный
+                    Log.d("TAG3", "Successful response")
                     _launches.value = response.body()?.takeLast(5)?.reversed() ?: emptyList()
                 } else {
-                    Log.e("TAG", "Error: ${response.message()}") // Логируем ошибку, если запрос не успешен
+                    Log.e("TAG", "Error: ${response.message()}")
                 }
             } catch (e: Exception) {
-                Log.e("TAG", "Exception: ${e.message}") // Логируем исключения
+                Log.e("TAG", "Exception: ${e.message}")
                 e.printStackTrace()
             }
         }
