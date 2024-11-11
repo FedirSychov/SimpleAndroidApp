@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.Response
 
 interface SpaceXApiService {
-    @GET("launches/latest")
+    @GET("launches")
     suspend fun getLaunches(): Response<List<Launch>>
 }
 
