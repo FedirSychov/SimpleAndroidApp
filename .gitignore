@@ -1,0 +1,14 @@
+# General Folders
+app/build/
+bin/
+gen/
+tmp/
+.gradle/
+.settings/
+.idea/
+
+# General Files
+.project
+.classpath
+.DS_Store
+local.properties
