@@ -1,4 +1,4 @@
-package com.example.spacexlauches.Screens.LaunchesScreen
+package com.example.spacexlauches.screens.launchDetails
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -8,9 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.spacexlauches.models.Launch
 
 @Composable
-fun LaunchDetailsScreen(name: String, date: String, rocket: String, details: String) {
+fun LaunchDetailsScreen(launch: Launch) {
+
+    val name = launch.name
+    val date = launch.date_utc
+    val rocket = launch.rocket
+    val details = launch.details
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -26,8 +33,10 @@ fun LaunchDetailsScreen(name: String, date: String, rocket: String, details: Str
             Text(text = "Date: $date", style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "Rocket: $rocket", style = MaterialTheme.typography.bodyLarge)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Details: $details", style = MaterialTheme.typography.bodyMedium)
+            if (details != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = "Details: $details", style = MaterialTheme.typography.bodyMedium)
+            }
         }
     }
 }
